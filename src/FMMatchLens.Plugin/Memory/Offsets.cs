@@ -1,40 +1,40 @@
 namespace FMMatchLens.Plugin.Memory;
 
-internal static class Offsets
+internal static partial class Offsets
 {
-    public static class GameMatch
+    public static partial class GameMatch
     {
-        public const int Competition = 0x678;
-        public const int CompetitionId = 0x684;
-        public const int CompetitionPrimaryColour = 0x68C;
-        public const int CompetitionSecondaryColour = 0x690;
-        public const int CompetitionTertiaryColour = 0x694;
-        public const int EventRewardBranch = 0xAD2;
-        public const int BallPosition = 0x12A40; // inline structure, not a pointer
-        public const int MomentumEventSource = 0x14EA8;
-        public const int WaitingReceiver = 0x12E70;
-        public const int HomeTeam = 0x15380;
-        public const int AwayTeam = 0x15388;
-        public const int PreviousBallHolder = 0x15398;
-        public const int CurrentBallHolder = 0x153A0;
-        public const int PlayerOfMatch = 0x153B0; // MATCH_PLAYER*, populated by native award selection
-        public const int Referee = 0x153F0;
-        public const int StadiumColourObject = 0x153F8;
-        public const int PossessionTeam = 0x15440;
+        public static readonly int Competition = 0x678;
+        public static readonly int CompetitionId = 0x684;
+        public static readonly int CompetitionPrimaryColour = 0x68C;
+        public static readonly int CompetitionSecondaryColour = 0x690;
+        public static readonly int CompetitionTertiaryColour = 0x694;
+        public static readonly int EventRewardBranch = 0xAD2;
+        public static readonly int BallPosition = 0x12A40; // inline structure, not a pointer
+        public static readonly int MomentumEventSource = 0x14EA8;
+        public static readonly int WaitingReceiver = 0x12E70;
+        public static readonly int HomeTeam = 0x15380;
+        public static readonly int AwayTeam = 0x15388;
+        public static readonly int PreviousBallHolder = 0x15398;
+        public static readonly int CurrentBallHolder = 0x153A0;
+        public static readonly int PlayerOfMatch = 0x153B0; // MATCH_PLAYER*, populated by native award selection
+        public static readonly int Referee = 0x153F0;
+        public static readonly int StadiumColourObject = 0x153F8;
+        public static readonly int PossessionTeam = 0x15440;
         // RTTI-verified official objects; the former FM26 constants pointed to
         // auxiliary data and timestamps rather than these officials.
-        public const int AssistantRefereeOne = 0x15350;
-        public const int AssistantRefereeTwo = 0x15358;
-        public const int FourthOfficialOne = 0x15360;
-        public const int FourthOfficialTwo = 0x15368;
-        public const int DisplayTick = 0x15464;
-        public const int Tick = 0x154EC;
-        public const int RatingBaseCondition = 0x15500;
-        public const int Period = 0x15547;
-        public const int LifecycleStateA = 0x15568;
-        public const int LifecycleStateB = 0x15569;
-        public const int LifecycleStateC = 0x1556A;
-        public const int LifecycleStateD = 0x1556B;
+        public static readonly int AssistantRefereeOne = 0x15350;
+        public static readonly int AssistantRefereeTwo = 0x15358;
+        public static readonly int FourthOfficialOne = 0x15360;
+        public static readonly int FourthOfficialTwo = 0x15368;
+        public static readonly int DisplayTick = 0x15464;
+        public static readonly int Tick = 0x154EC;
+        public static readonly int RatingBaseCondition = 0x15500;
+        public static readonly int Period = 0x15547;
+        public static readonly int LifecycleStateA = 0x15568;
+        public static readonly int LifecycleStateB = 0x15569;
+        public static readonly int LifecycleStateC = 0x1556A;
+        public static readonly int LifecycleStateD = 0x1556B;
     }
 
     public static class BallPosition
@@ -52,16 +52,16 @@ internal static class Offsets
         public const int Name = 0x40;
     }
 
-    public static class MomentumEventSource
+    public static partial class MomentumEventSource
     {
         public const int EventsBegin = 0x08;
         public const int EventsEnd = 0x10;
-        public const int HalfPitchWidth = 0xE0;
-        public const int HalfPitchLength = 0xE4;
-        public const int FirstHalfEndTick = 0xE8;
-        public const int FullTimeEndTick = 0xEC;
-        public const int ExtraTimeFirstHalfEndTick = 0xF0;
-        public const int ExtraTimeFlag = 0xF4;
+        public static readonly int HalfPitchWidth = 0xE0;
+        public static readonly int HalfPitchLength = 0xE4;
+        public static readonly int FirstHalfEndTick = 0xE8;
+        public static readonly int FullTimeEndTick = 0xEC;
+        public static readonly int ExtraTimeFirstHalfEndTick = 0xF0;
+        public static readonly int ExtraTimeFlag = 0xF4;
     }
 
     public static class MomentumEvent
@@ -179,35 +179,35 @@ internal static class Offsets
         public const int LongitudinalPosition = 0x04;
     }
 
-    public static class Team
+    public static partial class Team
     {
         // Pointer to the team's manager wrapper. Manager.Person resolves to the
         // shared Person subobject for both human managers and AI staff.
-        public const int Manager = 0x630;
+        public static readonly int Manager = 0x630;
         // Inline table of MATCH_PLAYER pointers. MomentumEvent player slots are
         // zero-based indexes into this table.
-        public const int PlayerTable = 0x138;
+        public static readonly int PlayerTable = 0x138;
         // Total entries can include players outside this match's squad. Those
         // entries may alias another player's Stats or have no Stats at all.
-        public const int PlayerTableCount = 0x72D;
+        public static readonly int PlayerTableCount = 0x72D;
         // One-byte matchday count: the selected prefix of PlayerTable, including
         // starters and substitutes. Use it for frames, metadata and event slots.
-        public const int PlayerCount = 0x72E;
+        public static readonly int PlayerCount = 0x72E;
         public const int UniqueId = 0x2C;
         public const int BackgroundColour = 0x30;
         public const int ForegroundColour = 0x34;
         public const int OutlineColour = 0x38;
-        public const int ContainerUniqueId = 0x94;
-        public const int LogoNumber = 0x133;
-        public const int DbTeam = 0xB0;
+        public static readonly int ContainerUniqueId = 0x94;
+        public static readonly int LogoNumber = 0x133;
+        public static readonly int DbTeam = 0xB0;
         // Unverified legacy location inside PlayerTable, not a validated list.
-        public const int PlayerListUnconfirmed = 0x200;
-        public const int TeamBase = 0x690;
+        public static readonly int PlayerListUnconfirmed = 0x200;
+        public static readonly int TeamBase = 0x690;
     }
 
-    public static class Manager
+    public static partial class Manager
     {
-        public const int Person = 0x28;
+        public static readonly int Person = 0x28;
     }
 
     public static class Rtti
@@ -333,12 +333,12 @@ internal static class Offsets
         public const int MatchSquadUnconfirmed = 0x250;
     }
 
-    public static class MatchPlayer
+    public static partial class MatchPlayer
     {
         public const int OppositionPositionKey = 0x1278;
-        public const int TacticalRosterSlot = 0x23C7;
-        public const int TacticalFormationSlot = 0x23F1;
-        public const int Person = 0x28;
+        public static readonly int TacticalRosterSlot = 0x23C7;
+        public static readonly int TacticalFormationSlot = 0x23F1;
+        public static readonly int Person = 0x28;
         // Pointer to an inline FM UTF-8 string instance. The byte length is at
         // +0x0 and zero-terminated text begins at +0x4.
         public const int ShirtName = 0x38;
@@ -356,29 +356,29 @@ internal static class Offsets
         public const int RatingContext290 = 0x290;
         public const int RatingContext298 = 0x298;
         public const int MatchTick = 0x2A8;
-        public const int ShirtNumber = 0x1234;
+        public static readonly int ShirtNumber = 0x1234;
         public const int InPossessionPosition = 0x1308;
         public const int InPossessionRoleDuty = 0x1348;
         public const int OutOfPossessionPosition = 0x1398;
         public const int OutOfPossessionRoleDuty = 0x13D8;
-        public const int Stats = 0x1E20;
+        public static readonly int Stats = 0x1E20;
         // Match UI inputs, distinct from ActualPlayer profile fields.
-        public const int Condition = 0x2214; // int32; UI integer percentage = raw / 10000
-        public const int Sharpness = 0x1228; // int16; verified UI Sharpness getter, raw / 100 (truncate)
-        public const int Morale = 0x123B; // int8; verified UI getter clamps signed value to 1..20
-        public const int RatingEventsBegin = 0x2048;
-        public const int RatingEventsEnd = 0x2050;
-        public const int CategoryHistoryBegin = 0x2060;
-        public const int CategoryHistoryEnd = 0x2068;
-        public const int SpecialW2C = 0x208D;
-        public const int SpecialW2E = 0x208E;
-        public const int SpecialW2D = 0x208F;
-        public const int InternalW25 = 0x215C;
-        public const int InternalW24 = 0x21E8;
-        public const int RawInternalRating = 0x22F8;
-        public const int SpecialW2F = 0x23EA;
-        public const int SpecialW30 = 0x23EB;
-        public const int SpecialW31 = 0x23EC;
+        public static readonly int Condition = 0x2214; // int32; UI integer percentage = raw / 10000
+        public static readonly int Sharpness = 0x1228; // int16; verified UI Sharpness getter, raw / 100 (truncate)
+        public static readonly int Morale = 0x123B; // int8; verified UI getter clamps signed value to 1..20
+        public static readonly int RatingEventsBegin = 0x2048;
+        public static readonly int RatingEventsEnd = 0x2050;
+        public static readonly int CategoryHistoryBegin = 0x2060;
+        public static readonly int CategoryHistoryEnd = 0x2068;
+        public static readonly int SpecialW2C = 0x208D;
+        public static readonly int SpecialW2E = 0x208E;
+        public static readonly int SpecialW2D = 0x208F;
+        public static readonly int InternalW25 = 0x215C;
+        public static readonly int InternalW24 = 0x21E8;
+        public static readonly int RawInternalRating = 0x22F8;
+        public static readonly int SpecialW2F = 0x23EA;
+        public static readonly int SpecialW30 = 0x23EB;
+        public static readonly int SpecialW31 = 0x23EC;
     }
 
     public static class RatingContext
@@ -423,7 +423,7 @@ internal static class Offsets
         public const int Angle = 0x14; // u16; (PositionX=0, PositionY=1)=0, clockwise+
     }
 
-    public static class Person
+    public static partial class Person
     {
         public const int ActualPlayerDelta = -0x288;
         public const int Uid = 0x0C;
@@ -431,17 +431,17 @@ internal static class Offsets
         // been verified for FM27. Do not infer gender from these raw bytes.
         public const int FemaleBit = 0x10;
         public const int Gender = 0x19;
-        public const int FirstName = 0x50;
-        public const int SecondName = 0x58;
-        public const int CommonName = 0x60;
-        public const int Nation = 0x68;
-        public const int City = 0x80;
+        public static readonly int FirstName = 0x50;
+        public static readonly int SecondName = 0x58;
+        public static readonly int CommonName = 0x60;
+        public static readonly int Nation = 0x68;
+        public static readonly int City = 0x80;
         // uint32 FM date: year = raw >> 16, one-based day-of-year = raw & 0x1FF.
-        public const int DateOfBirth = 0x88;
-        public const int FullContract = 0xA8;
+        public static readonly int DateOfBirth = 0x88;
+        public static readonly int FullContract = 0xA8;
 
         // 64-bit player-trait bitfield spanning Person + 0xC0 through Person + 0xC7.
-        public const int Traits = 0xC0;
+        public static readonly int Traits = 0xC0;
         // Bit 0 (+0xC0 bit 0, mask 0x01): Runs With Ball Down Left
         public const ulong RunsWithBallDownLeft = 1UL << 0;
         // Bit 1 (+0xC0 bit 1, mask 0x02): Runs With Ball Down Right
@@ -571,10 +571,10 @@ internal static class Offsets
         // Bit 63 (+0xC7 bit 7, mask 0x80): Plays Ball With Feet
         public const ulong PlaysBallWithFeet = 1UL << 63;
 
-        public const int InternationalApps = 0x134;  //byte
-        public const int InternationalGoals = 0x136; //byte
-        public const int YouthApps = 0x138;          //byte
-        public const int YouthGoals = 0x13A;         //byte
+        public static readonly int InternationalApps = 0x134;  //byte
+        public static readonly int InternationalGoals = 0x136; //byte
+        public static readonly int YouthApps = 0x138;          //byte
+        public static readonly int YouthGoals = 0x13A;         //byte
     }
 
     public static class Nation

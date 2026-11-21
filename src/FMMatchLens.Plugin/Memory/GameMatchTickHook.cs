@@ -12,7 +12,7 @@ using Tactics = FMMatchLens.Plugin.Memory.Offsets.Tactics;
 
 namespace FMMatchLens.Plugin.Memory;
 
-internal sealed class GameMatchTickHook : IDisposable
+internal sealed partial class GameMatchTickHook : IDisposable
 {
     private const int CandidateRealtimeMaxTicksPerSecond = 240;
     private const int CandidatePaceObservationSeconds = 2;
@@ -1033,6 +1033,7 @@ internal sealed class GameMatchTickHook : IDisposable
         RawRealtimeTickFrame frame,
         ReadOnlySpan<nint> capturedMatchPlayers)
     {
+        if (MacNative.IsMacOS) return; // rating research fields are not mapped on macOS yet
         lock (_ratingCaptureGate)
         {
             if (_ratingGenerations.TryGetValue(match, out var generation))
@@ -1522,6 +1523,7 @@ internal sealed class GameMatchTickHook : IDisposable
             var awayMetadata = ReadTeamMetadata(source.AwayTeam, "Away");
             var date = state.MatchDate;
             var competition = ReadCompetitionMetadata(match);
+            if (MacNative.IsMacOS) LogMacMetadataOnce(session, homeMetadata, awayMetadata, metadata, date, competition);
             return () => session.Timeline.SetMetadata(homeMetadata, awayMetadata, metadata, date, competition);
         }
         return null;
@@ -1726,6 +1728,7 @@ internal sealed class GameMatchTickHook : IDisposable
         rttiOffset = default;
         kind = ManagerKind.Unknown;
         uid = null;
+        if (MacNative.IsMacOS) return TryReadMacManagerIdentity(team, out person, out rttiOffset, out kind, out uid);
         if (team == default ||
             !_memoryReader.TryReadPointer(team + Offsets.Team.Manager, out var manager) ||
             manager == default ||
@@ -1752,6 +1755,7 @@ internal sealed class GameMatchTickHook : IDisposable
 
     private IReadOnlyDictionary<string, int>? ReadPlayerPositionFamiliarities(nint person)
     {
+        if (MacNative.IsMacOS) return null; // the player record is not mapped on macOS yet
         if (person == default)
         {
             return null;
@@ -1792,6 +1796,7 @@ internal sealed class GameMatchTickHook : IDisposable
 
     private PlayerProfile? ReadPlayerProfile(nint person, nint fullContract)
     {
+        if (MacNative.IsMacOS) return null; // the player record is not mapped on macOS yet
         if (person == default)
         {
             return null;
@@ -1920,6 +1925,7 @@ internal sealed class GameMatchTickHook : IDisposable
 
     private PlayerAttributes? ReadPlayerAttributes(nint person)
     {
+        if (MacNative.IsMacOS) return null; // the player record is not mapped on macOS yet
         if (person == default)
         {
             return null;
